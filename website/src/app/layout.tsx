@@ -1,9 +1,10 @@
+import { BaseLayout } from "@/components/base-layout";
+import { ThemeProvider } from "@/components/theme-provider";
+import { SidebarProvider } from "@/components/ui/sidebar";
+import { Toaster } from "@/components/ui/toaster";
 import { PropsWithChildren } from "react";
 
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
-import { BaseLayout } from "@/components/base-layout";
-import { SidebarProvider } from "@/components/ui/sidebar";
 
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
@@ -17,6 +18,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
         >
           <SidebarProvider>
             <BaseLayout>{children}</BaseLayout>
+            <Toaster />
           </SidebarProvider>
         </ThemeProvider>
       </body>

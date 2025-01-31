@@ -8,6 +8,8 @@ import {
 import { cn } from "@/lib/utils";
 import { SigninGithubButton } from "./signin-github-button";
 import { SigninGoogleButton } from "./signin-google-button";
+import { SigninTwitterButton } from "./signin-twitter-button";
+import { SigninLineButton } from "./signin-line-button";
 
 export function SigninForm({
   className,
@@ -26,6 +28,8 @@ export function SigninForm({
           <div className="flex flex-col gap-6">
             <SigninGoogleButton />
             <SigninGithubButton />
+            <SigninTwitterButton />
+            <SigninLineButton />
           </div>
         </CardContent>
       </Card>

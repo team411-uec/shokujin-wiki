@@ -1,10 +1,9 @@
 import { auth } from "@/auth";
+import { ArticleEditor } from "@/components/article-editor";
 import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
 import { prisma } from "@/prisma";
 import NextLink from "next/link";
 import { redirect } from "next/navigation";
-
 async function updateArticle(slug: string, formData: FormData) {
   "use server";
 
@@ -61,13 +60,7 @@ export default async function EditArticlePage({
         「{decodeURIComponent(slug)}」の編集
       </h1>
       <form action={updateArticleWithSlug} className="mt-4 space-y-4">
-        <Textarea
-          placeholder="入力してください"
-          rows={7}
-          className="font-mono"
-          name="content"
-          defaultValue={exist.content}
-        />
+        <ArticleEditor defaultValue={exist.content} />
         <Button type="submit">更新</Button>
       </form>
     </div>

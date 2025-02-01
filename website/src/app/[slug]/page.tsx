@@ -1,5 +1,5 @@
+import { ArticleViewer } from "@/components/article-viewer";
 import { Button } from "@/components/ui/button";
-import { Viewer } from "@/components/viewer";
 import { prisma } from "@/prisma";
 import Link from "next/link";
 
@@ -38,7 +38,10 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
   return (
     <div className="relative">
-      <Viewer slug={article.slug} content={article.content}></Viewer>
+      <ArticleViewer
+        slug={article.slug}
+        content={article.content}
+      ></ArticleViewer>
       <div className="absolute right-0 top-0 flex space-x-2">
         <Button asChild variant="outline">
           <Link href={`/_edit?slug=${slug}`}>編集</Link>

@@ -1,7 +1,9 @@
 import { auth } from "@/auth";
+import { ArticleViewer } from "@/components/article-viewer";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
-import { Viewer } from "@/components/viewer";
 import { prisma } from "@/prisma";
+import { AlertCircle } from "lucide-react";
 import { redirect } from "next/navigation";
 
 async function deleteArticle(slug: string) {
@@ -48,16 +50,23 @@ export default async function DeleteArticlePage({
 
   return (
     <div>
-      <h1>「{decodeURIComponent(slug)}」の削除</h1>
-      <p>
-        以下のページを削除します。確定するには以下のボタンをクリックしてください。
-      </p>
-      <form action={deleteArticleWithSlug}>
-        <Button type="submit" variant="destructive">
-          削除
-        </Button>
-      </form>
-      <Viewer slug={exist.slug} content={exist.content}></Viewer>
+      <Alert variant="destructive" className="sticky top-4 w-fit bg-background">
+        <AlertCircle className="h-4 w-4" />
+        <AlertTitle>「{decodeURIComponent(slug)}」の削除</AlertTitle>
+        <AlertDescription className="flex items-end gap-2">
+          <div>
+            以下のページを削除します。確定するには削除ボタンをクリックしてください。
+          </div>
+          <form action={deleteArticleWithSlug}>
+            <Button type="submit" variant="destructive">
+              削除
+            </Button>
+          </form>
+        </AlertDescription>
+      </Alert>
+      <div className="mt-8">
+        <ArticleViewer slug={exist.slug} content={exist.content} />
+      </div>
     </div>
   );
 }

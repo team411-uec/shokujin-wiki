@@ -57,7 +57,7 @@ export async function AppSidebar() {
             src="/logo.svg"
             width={512}
             height={512}
-            className="h-auto w-full animate-spin"
+            className="h-auto w-full"
             // style={{
             //   filter: "drop-shadow(1px 1px 5px rgba(255, 200, 0, 0.9))",
             // }}

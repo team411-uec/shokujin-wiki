@@ -16,5 +16,16 @@ services:
       timeout: 5s
       retries: 5
 
+  website:
+    build:
+      context: ./website
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./website/.env.local
+    depends_on:
+      - postgres
+
 volumes:
   postgres-data:

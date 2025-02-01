@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation";
 export default function NotFound() {
   const pathname = usePathname();
 
-  if (pathname.startsWith("/_")) {
+  if (pathname.startsWith("/_") || pathname.slice(1).includes("/")) {
     // システムページ
     return (
       <>

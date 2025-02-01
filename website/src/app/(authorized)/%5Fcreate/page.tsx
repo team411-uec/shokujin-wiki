@@ -3,7 +3,7 @@ import { AppHeader } from "@/components/app-header";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { prisma } from "@/prisma";
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 
 async function createArticle(slug: string, formData: FormData) {
   "use server";
@@ -37,6 +37,10 @@ export default async function CreateArticlePage({
   searchParams,
 }: CreateArticleProps) {
   const { slug } = await searchParams;
+
+  if (slug.includes("/")) {
+    notFound();
+  }
 
   const exist = await prisma.article.findUnique({
     where: {

@@ -9,7 +9,7 @@ export default async function AllPage() {
     <>
       <AppHeader />
       <Viewer>
-        <h1>すべての記事</h1>
+        <h1>すべてのページ</h1>
         <ul>
           {articles
             .sort(

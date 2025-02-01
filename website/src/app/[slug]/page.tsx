@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Viewer } from "@/components/Viewer";
+import { Viewer } from "@/components/viewer";
 import { prisma } from "@/prisma";
 import Link from "next/link";
 

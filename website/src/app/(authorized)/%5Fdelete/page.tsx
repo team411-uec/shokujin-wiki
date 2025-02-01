@@ -1,6 +1,6 @@
 import { auth } from "@/auth";
 import { Button } from "@/components/ui/button";
-import { Viewer } from "@/components/Viewer";
+import { Viewer } from "@/components/viewer";
 import { prisma } from "@/prisma";
 import { redirect } from "next/navigation";
 

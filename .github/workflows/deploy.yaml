@@ -16,7 +16,7 @@ jobs:
       - uses: docker/metadata-action@v5
         id: metadata
         with:
-          images: ghcr.io/${{ github.actor }}/shokujin-wiki
+          images: ghcr.io/${{ github.repository }}
           tags: |
             type=semver,pattern={{major}}.{{minor}}.{{patch}}
             type=semver,pattern={{major}}.{{minor}}

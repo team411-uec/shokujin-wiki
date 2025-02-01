@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Textarea } from "./ui/textarea";
-import { Viewer } from "./viewer";
+import { MarkdownViewer } from "./markdown-viewer";
 
 interface ArticleEditorProps {
   defaultValue: string;
@@ -21,7 +21,7 @@ export function ArticleEditor({ defaultValue }: ArticleEditorProps) {
         onChange={(e) => setContent(e.target.value)}
       />
       <div className="overflow-y-auto">
-        <Viewer content={content || "入力してください"} />
+        <MarkdownViewer content={content || "入力してください"} />
       </div>
     </div>
   );

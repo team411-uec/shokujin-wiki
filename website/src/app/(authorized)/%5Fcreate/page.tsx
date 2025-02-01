@@ -1,8 +1,8 @@
 import { auth } from "@/auth";
+import { AppHeader } from "@/components/app-header";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { prisma } from "@/prisma";
-import NextLink from "next/link";
 import { redirect } from "next/navigation";
 
 async function createArticle(slug: string, formData: FormData) {
@@ -44,20 +44,13 @@ export default async function CreateArticlePage({
     },
   });
 
-  if (exist)
-    return (
-      <div>
-        <p>すでに「{decodeURIComponent(slug)}」は存在します</p>
-        <p>
-          <NextLink href={`/${slug}`}>記事を見る</NextLink>
-        </p>
-      </div>
-    );
+  if (exist) redirect(`/_edit?slug=${encodeURIComponent(slug)}`);
 
   const createArticleWithSlug = createArticle.bind(null, slug);
 
   return (
-    <div>
+    <>
+      <AppHeader />
       <h1 className="text-4xl font-bold">
         「{decodeURIComponent(slug)}」の作成
       </h1>
@@ -70,6 +63,6 @@ export default async function CreateArticlePage({
         />
         <Button type="submit">投稿</Button>
       </form>
-    </div>
+    </>
   );
 }

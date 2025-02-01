@@ -1,5 +1,5 @@
 import { PropsWithChildren } from "react";
-import { Viewer } from "./viewer";
+import { MarkdownViewer } from "./markdown-viewer";
 
 interface ArticleViewerProps {
   slug: string;
@@ -13,7 +13,7 @@ export function ArticleViewer({
   return (
     <div className="prose prose-slate max-w-none">
       <h1>{decodeURIComponent(slug)}</h1>
-      <Viewer content={content} />
+      <MarkdownViewer content={content} />
     </div>
   );
 }

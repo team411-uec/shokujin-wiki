@@ -1,9 +1,10 @@
 import { auth } from "@/auth";
+import { AppHeader } from "@/components/app-header";
 import { ArticleEditor } from "@/components/article-editor";
 import { Button } from "@/components/ui/button";
+import { Viewer } from "@/components/viewer";
 import { prisma } from "@/prisma";
-import NextLink from "next/link";
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 async function updateArticle(slug: string, formData: FormData) {
   "use server";
 
@@ -41,28 +42,20 @@ export default async function EditArticlePage({
     },
   });
 
-  if (!exist) {
-    return (
-      <div>
-        <p>「{decodeURIComponent(slug)}」は存在しません</p>
-        <p>
-          <NextLink href={`/_create?slug=${slug}`}>記事を作成する</NextLink>
-        </p>
-      </div>
-    );
-  }
+  if (!exist) notFound();
 
   const updateArticleWithSlug = updateArticle.bind(null, slug);
 
   return (
-    <div>
-      <h1 className="text-4xl font-bold">
-        「{decodeURIComponent(slug)}」の編集
-      </h1>
+    <>
+      <AppHeader />
+      <Viewer>
+        <h1>「{decodeURIComponent(slug)}」の編集</h1>
+      </Viewer>
       <form action={updateArticleWithSlug} className="mt-4 space-y-4">
         <ArticleEditor defaultValue={exist.content} />
         <Button type="submit">更新</Button>
       </form>
-    </div>
+    </>
   );
 }

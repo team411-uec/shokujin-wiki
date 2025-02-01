@@ -10,6 +10,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarRail,
 } from "@/components/ui/sidebar";
 import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
 import Image from "next/image";
@@ -50,13 +51,16 @@ export async function AppSidebar() {
   return (
     <Sidebar>
       <SidebarHeader>
-        <NextLink href="/" className="p-4">
+        <NextLink href="/" className="px-8 py-4">
           <Image
             alt=""
             src="/logo.svg"
-            width={222}
-            height={61}
-            className="h-auto w-full"
+            width={512}
+            height={512}
+            className="h-auto w-full animate-spin"
+            // style={{
+            //   filter: "drop-shadow(1px 1px 5px rgba(255, 200, 0, 0.9))",
+            // }}
           />
         </NextLink>
       </SidebarHeader>
@@ -93,6 +97,7 @@ export async function AppSidebar() {
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarFooter>
+      <SidebarRail />
     </Sidebar>
   );
 }

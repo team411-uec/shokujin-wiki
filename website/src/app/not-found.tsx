@@ -6,7 +6,7 @@ import NextLink from "next/link";
 import { usePathname } from "next/navigation";
 
 export default function NotFound() {
-  const pathname = usePathname();
+  const pathname = decodeURIComponent(usePathname());
 
   if (pathname.startsWith("/_") || pathname.slice(1).includes("/")) {
     // システムページ

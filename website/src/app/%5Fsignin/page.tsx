@@ -1,6 +1,7 @@
 import { auth } from "@/auth";
 import { SigninForm } from "./_components/signin-form";
 import { redirect } from "next/navigation";
+import { AppHeader } from "@/components/app-header";
 
 export default async function SigninPage() {
   const session = await auth();
@@ -10,10 +11,13 @@ export default async function SigninPage() {
   }
 
   return (
-    <div className="flex min-h-svh w-full items-center justify-center">
-      <div className="w-full max-w-md">
-        <SigninForm />
+    <>
+      <AppHeader />
+      <div className="flex items-center justify-center">
+        <div className="max-w-md pt-16">
+          <SigninForm />
+        </div>
       </div>
-    </div>
+    </>
   );
 }

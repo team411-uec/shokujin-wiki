@@ -10,7 +10,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { Home } from "lucide-react";
+import { Home, List, Shuffle } from "lucide-react";
 import Image from "next/image";
 import NextLink from "next/link";
 import { AccountMenu } from "./account-menu";
@@ -21,6 +21,16 @@ const items = [
     title: "メインページ",
     url: "/",
     icon: Home,
+  },
+  {
+    title: "ランダムページ",
+    url: "/_random",
+    icon: Shuffle,
+  },
+  {
+    title: "すべてのページ",
+    url: "/_all",
+    icon: List,
   },
 ];
 

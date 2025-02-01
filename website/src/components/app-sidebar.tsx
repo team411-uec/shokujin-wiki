@@ -74,7 +74,7 @@ export async function AppSidebar() {
               <AccountMenu user={session.user} />
             ) : (
               <SidebarMenuButton asChild>
-                <NextLink href="signin">新規登録・ログイン</NextLink>
+                <NextLink href="/_signin">新規登録・ログイン</NextLink>
               </SidebarMenuButton>
             )}
           </SidebarMenuItem>

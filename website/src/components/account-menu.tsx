@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronUp, User2 } from "lucide-react";
+import { ChevronDown, User2 } from "lucide-react";
 import { User } from "next-auth";
 import { signOut } from "next-auth/react";
 import {
@@ -25,16 +25,13 @@ export function AccountMenu({ user }: AccountMenuProps) {
       <DropdownMenuTrigger asChild>
         <SidebarMenuButton>
           <User2 /> {user?.name}
-          <ChevronUp className="ml-auto" />
+          <ChevronDown className="ml-auto" />
         </SidebarMenuButton>
       </DropdownMenuTrigger>
       <DropdownMenuContent
         side="top"
         className="w-[--radix-popper-anchor-width]"
       >
-        <DropdownMenuItem>
-          <span>アカウント</span>
-        </DropdownMenuItem>
         <DropdownMenuItem onClick={handleSignOut}>
           <span>ログアウト</span>
         </DropdownMenuItem>

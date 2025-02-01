@@ -25,7 +25,7 @@ jobs:
       - uses: docker/build-push-action@v6
         with:
           context: ./website
-          file: Dockerfile
+          file: ./website/Dockerfile
           push: true
         #   provenance: false
           tags: ${{ steps.metadata.outputs.tags }}

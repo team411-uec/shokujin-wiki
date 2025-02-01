@@ -14,6 +14,7 @@ import { Home } from "lucide-react";
 import Image from "next/image";
 import NextLink from "next/link";
 import { AccountMenu } from "./account-menu";
+import ModeToggle from "./mode-toggle";
 
 const items = [
   {
@@ -62,6 +63,11 @@ export async function AppSidebar() {
         <SidebarGroup />
       </SidebarContent>
       <SidebarFooter>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <ModeToggle />
+          </SidebarMenuItem>
+        </SidebarMenu>
         <SidebarMenu>
           <SidebarMenuItem>
             {session ? (

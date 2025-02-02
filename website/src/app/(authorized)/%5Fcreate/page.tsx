@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { UploadImageButton } from "@/components/upload-image-button";
 import { Viewer } from "@/components/viewer";
 import { prisma } from "@/prisma";
+import { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 
 async function createArticle(slug: string, formData: FormData) {
@@ -33,6 +34,15 @@ interface CreateArticleProps {
   searchParams: Promise<{
     slug: string;
   }>;
+}
+
+export async function generateMetadata({
+  searchParams,
+}: CreateArticleProps): Promise<Metadata> {
+  const { slug } = await searchParams;
+  return {
+    title: decodeURIComponent(slug) + "の作成",
+  };
 }
 
 export default async function CreateArticlePage({

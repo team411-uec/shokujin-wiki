@@ -5,7 +5,9 @@ import { Button } from "@/components/ui/button";
 import { UploadImageButton } from "@/components/upload-image-button";
 import { Viewer } from "@/components/viewer";
 import { prisma } from "@/prisma";
+import { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
+
 async function updateArticle(slug: string, formData: FormData) {
   "use server";
 
@@ -30,6 +32,15 @@ interface EditArticlePageProps {
   searchParams: Promise<{
     slug: string;
   }>;
+}
+
+export async function generateMetadata({
+  searchParams,
+}: EditArticlePageProps): Promise<Metadata> {
+  const { slug } = await searchParams;
+  return {
+    title: decodeURIComponent(slug) + "の編集",
+  };
 }
 
 export default async function EditArticlePage({

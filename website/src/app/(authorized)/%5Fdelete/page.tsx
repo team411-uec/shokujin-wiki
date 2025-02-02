@@ -5,6 +5,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { prisma } from "@/prisma";
 import { AlertCircle } from "lucide-react";
+import { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 
 async function deleteArticle(slug: string) {
@@ -26,6 +27,15 @@ interface DeleteArticlePageProps {
   searchParams: Promise<{
     slug: string;
   }>;
+}
+
+export async function generateMetadata({
+  searchParams,
+}: DeleteArticlePageProps): Promise<Metadata> {
+  const { slug } = await searchParams;
+  return {
+    title: decodeURIComponent(slug) + "の削除",
+  };
 }
 
 export default async function DeleteArticlePage({

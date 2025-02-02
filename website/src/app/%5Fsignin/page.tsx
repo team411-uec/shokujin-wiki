@@ -2,6 +2,11 @@ import { auth } from "@/auth";
 import { SigninForm } from "./_components/signin-form";
 import { redirect } from "next/navigation";
 import { AppHeader } from "@/components/app-header";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "ログイン",
+};
 
 export default async function SigninPage() {
   const session = await auth();

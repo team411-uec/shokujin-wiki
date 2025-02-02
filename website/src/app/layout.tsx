@@ -5,6 +5,14 @@ import { Toaster } from "@/components/ui/toaster";
 import { PropsWithChildren } from "react";
 
 import "./globals.css";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: {
+    default: "食神Wiki",
+    template: "%s | 食神Wiki",
+  },
+};
 
 export default function RootLayout({ children }: PropsWithChildren) {
   return (

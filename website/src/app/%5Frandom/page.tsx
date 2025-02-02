@@ -1,5 +1,10 @@
 import { prisma } from "@/prisma";
+import { Metadata } from "next";
 import { redirect } from "next/navigation";
+
+export const metadata: Metadata = {
+  title: "ランダムページ",
+};
 
 export default async function RandomPage() {
   const articles = await prisma.article.findMany({

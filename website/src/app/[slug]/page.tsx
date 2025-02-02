@@ -2,6 +2,7 @@ import { AppHeader } from "@/components/app-header";
 import { ArticleViewer } from "@/components/article-viewer";
 import { Button } from "@/components/ui/button";
 import { prisma } from "@/prisma";
+import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -9,6 +10,15 @@ interface ArticlePageProps {
   params: Promise<{
     slug: string;
   }>;
+}
+
+export async function generateMetadata({
+  params,
+}: ArticlePageProps): Promise<Metadata> {
+  const { slug } = await params;
+  return {
+    title: decodeURIComponent(slug),
+  };
 }
 
 export default async function ArticlePage({ params }: ArticlePageProps) {

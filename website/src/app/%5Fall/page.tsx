@@ -1,7 +1,12 @@
 import { AppHeader } from "@/components/app-header";
 import { Viewer } from "@/components/viewer";
 import { prisma } from "@/prisma";
+import { Metadata } from "next";
 import NextLink from "next/link";
+
+export const metadata: Metadata = {
+  title: "すべてのページ",
+};
 
 export default async function AllPage() {
   const articles = await prisma.article.findMany({

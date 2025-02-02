@@ -15,6 +15,7 @@ import Image from "next/image";
 import NextLink from "next/link";
 import { AccountMenu } from "./account-menu";
 import ModeToggle from "./mode-toggle";
+import { PathnameChangeHandler } from "./pathname-change-handler";
 
 const items = [
   {
@@ -38,59 +39,62 @@ export async function AppSidebar() {
   const session = await auth();
 
   return (
-    <Sidebar>
-      <SidebarHeader>
-        <NextLink href="/" className="px-8 py-4">
-          <Image
-            alt=""
-            src="/logo.svg"
-            width={512}
-            height={512}
-            className="h-auto w-full"
-            priority
-            // style={{
-            //   filter: "drop-shadow(1px 1px 5px rgba(255, 200, 0, 0.9))",
-            // }}
-          />
-        </NextLink>
-      </SidebarHeader>
-      <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {items.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <NextLink href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </NextLink>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-        <SidebarGroup />
-      </SidebarContent>
-      <SidebarFooter>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <ModeToggle />
-          </SidebarMenuItem>
-        </SidebarMenu>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            {session ? (
-              <AccountMenu user={session.user} />
-            ) : (
-              <SidebarMenuButton asChild>
-                <NextLink href="/_signin">新規登録・ログイン</NextLink>
-              </SidebarMenuButton>
-            )}
-          </SidebarMenuItem>
-        </SidebarMenu>
-      </SidebarFooter>
-    </Sidebar>
+    <>
+      <PathnameChangeHandler />
+      <Sidebar>
+        <SidebarHeader>
+          <NextLink href="/" className="px-8 py-4">
+            <Image
+              alt=""
+              src="/logo.svg"
+              width={512}
+              height={512}
+              className="h-auto w-full"
+              priority
+              // style={{
+              //   filter: "drop-shadow(1px 1px 5px rgba(255, 200, 0, 0.9))",
+              // }}
+            />
+          </NextLink>
+        </SidebarHeader>
+        <SidebarContent>
+          <SidebarGroup>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                {items.map((item) => (
+                  <SidebarMenuItem key={item.title}>
+                    <SidebarMenuButton asChild>
+                      <NextLink href={item.url}>
+                        <item.icon />
+                        <span>{item.title}</span>
+                      </NextLink>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+          <SidebarGroup />
+        </SidebarContent>
+        <SidebarFooter>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <ModeToggle />
+            </SidebarMenuItem>
+          </SidebarMenu>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              {session ? (
+                <AccountMenu user={session.user} />
+              ) : (
+                <SidebarMenuButton asChild>
+                  <NextLink href="/_signin">新規登録・ログイン</NextLink>
+                </SidebarMenuButton>
+              )}
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarFooter>
+      </Sidebar>
+    </>
   );
 }

@@ -1,12 +1,13 @@
+import { cn } from "@/lib/utils";
+import { ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { PropsWithChildren } from "react";
 import Markdown from "react-markdown";
 import rehypeFormat from "rehype-format";
 import rehypeRaw from "rehype-raw";
+import rehypeSanitize from "rehype-sanitize";
 import remarkGfm from "remark-gfm";
 import { Viewer } from "./viewer";
-import { cn } from "@/lib/utils";
-import { ExternalLink } from "lucide-react";
 
 interface MarkdownViewerProps {
   content: string;
@@ -21,7 +22,7 @@ export function MarkdownViewer({
     <Viewer>
       <Markdown
         remarkPlugins={[remarkGfm]}
-        rehypePlugins={[rehypeRaw, rehypeFormat]}
+        rehypePlugins={[rehypeRaw, rehypeSanitize, rehypeFormat]}
         remarkRehypeOptions={{
           allowDangerousHtml: true,
         }}

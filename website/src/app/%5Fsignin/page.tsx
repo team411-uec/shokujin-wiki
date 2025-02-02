@@ -6,6 +6,9 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "ログイン",
+  alternates: {
+    canonical: "https://shokujin.com/_signin",
+  },
 };
 
 export default async function SigninPage() {

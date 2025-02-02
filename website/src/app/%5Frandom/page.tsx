@@ -4,6 +4,9 @@ import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "ランダムページ",
+  alternates: {
+    canonical: "https://shokujin.com/_random",
+  },
 };
 
 export default async function RandomPage() {

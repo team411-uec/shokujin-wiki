@@ -18,6 +18,9 @@ export async function generateMetadata({
   const { slug } = await params;
   return {
     title: decodeURIComponent(slug),
+    alternates: {
+      canonical: `https://shokujin.com/${slug}`,
+    },
   };
 }
 

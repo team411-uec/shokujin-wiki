@@ -42,6 +42,9 @@ export async function generateMetadata({
   const { slug } = await searchParams;
   return {
     title: decodeURIComponent(slug) + "の作成",
+    alternates: {
+      canonical: `https://shokujin.com/_create?slug=${slug}`,
+    },
   };
 }
 

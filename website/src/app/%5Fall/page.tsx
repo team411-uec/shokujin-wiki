@@ -6,6 +6,9 @@ import NextLink from "next/link";
 
 export const metadata: Metadata = {
   title: "すべてのページ",
+  alternates: {
+    canonical: "https://shokujin.com/_all",
+  },
 };
 
 export default async function AllPage() {

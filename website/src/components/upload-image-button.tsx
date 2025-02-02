@@ -63,7 +63,7 @@ export function UploadImageButton() {
       <DialogContent className="sm:max-w-sm">
         <DialogHeader>
           <DialogTitle>画像アップロード</DialogTitle>
-          <DialogDescription></DialogDescription>
+          <DialogDescription className="sr-only"></DialogDescription>
         </DialogHeader>
         {uploadedImageUrl ? (
           <div className="overflow-hidden">

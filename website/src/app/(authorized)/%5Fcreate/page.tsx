@@ -81,15 +81,15 @@ export default async function CreateArticlePage({
   return (
     <>
       <AppHeader />
-      <div className="flex items-start justify-between">
-        <Viewer>
-          <h1>ページ: {decodeURIComponent(slug)}の作成</h1>
-        </Viewer>
-        <UploadImageButton />
-      </div>
+      <Viewer>
+        <h1>ページ: {decodeURIComponent(slug)}の作成</h1>
+      </Viewer>
       <form action={createArticleWithSlug} className="mt-4 space-y-4">
+        <div className="fixed bottom-4 right-4 space-x-4">
+          <UploadImageButton />
+          <Button type="submit">投稿</Button>
+        </div>
         <ArticleEditor defaultValue="" existSlugs={existSlugs} />
-        <Button type="submit">投稿</Button>
       </form>
     </>
   );

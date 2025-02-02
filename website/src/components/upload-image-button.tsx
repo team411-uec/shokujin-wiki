@@ -60,7 +60,7 @@ export function UploadImageButton() {
       <DialogTrigger asChild>
         <Button variant="secondary">画像アップロード</Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-sm">
+      <DialogContent className="sm:max-w-sm overflow-y-auto max-h-svh">
         <DialogHeader>
           <DialogTitle>画像アップロード</DialogTitle>
           <DialogDescription className="sr-only"></DialogDescription>

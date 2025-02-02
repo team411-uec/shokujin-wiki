@@ -13,6 +13,10 @@ export const metadata: Metadata = {
     default: "食神Wiki",
     template: "%s | 食神Wiki",
   },
+  description: "食神Wikiは、食神のメニューや豆知識をまとめたサイトです。",
+  alternates: {
+    canonical: "https://shokujin.com",
+  },
 };
 
 export default function RootLayout({ children }: PropsWithChildren) {

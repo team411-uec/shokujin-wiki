@@ -45,6 +45,14 @@ export default async function EditArticlePage({
 
   if (!exist) notFound();
 
+  const slugs = await prisma.article.findMany({
+    select: {
+      slug: true,
+    },
+  });
+
+  const existSlugs = slugs.map((s) => s.slug);
+
   const updateArticleWithSlug = updateArticle.bind(null, slug);
 
   return (
@@ -57,7 +65,7 @@ export default async function EditArticlePage({
         <UploadImageButton />
       </div>
       <form action={updateArticleWithSlug} className="mt-4 space-y-4">
-        <ArticleEditor defaultValue={exist.content} />
+        <ArticleEditor defaultValue={exist.content} existSlugs={existSlugs} />
         <Button type="submit">更新</Button>
       </form>
     </>

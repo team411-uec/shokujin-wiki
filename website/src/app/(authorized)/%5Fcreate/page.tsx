@@ -52,6 +52,14 @@ export default async function CreateArticlePage({
 
   if (exist) redirect(`/_edit?slug=${encodeURIComponent(slug)}`);
 
+  const slugs = await prisma.article.findMany({
+    select: {
+      slug: true,
+    },
+  });
+
+  const existSlugs = slugs.map((s) => s.slug);
+
   const createArticleWithSlug = createArticle.bind(null, slug);
 
   return (
@@ -64,7 +72,7 @@ export default async function CreateArticlePage({
         <UploadImageButton />
       </div>
       <form action={createArticleWithSlug} className="mt-4 space-y-4">
-        <ArticleEditor defaultValue="" />
+        <ArticleEditor defaultValue="" existSlugs={existSlugs} />
         <Button type="submit">投稿</Button>
       </form>
     </>

@@ -6,9 +6,13 @@ import { MarkdownViewer } from "./markdown-viewer";
 
 interface ArticleEditorProps {
   defaultValue: string;
+  existSlugs: string[];
 }
 
-export function ArticleEditor({ defaultValue }: ArticleEditorProps) {
+export function ArticleEditor({
+  defaultValue,
+  existSlugs,
+}: ArticleEditorProps) {
   const [content, setContent] = useState(defaultValue);
 
   return (
@@ -21,7 +25,10 @@ export function ArticleEditor({ defaultValue }: ArticleEditorProps) {
         onChange={(e) => setContent(e.target.value)}
       />
       <div className="overflow-y-auto">
-        <MarkdownViewer content={content || "入力してください"} />
+        <MarkdownViewer
+          content={content || "入力してください"}
+          existSlugs={existSlugs}
+        />
       </div>
     </div>
   );

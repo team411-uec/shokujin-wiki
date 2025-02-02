@@ -23,6 +23,12 @@ export class ShokujinWikiStack extends cdk.Stack {
       bucketName: `shokujin-wiki-resources-${this.account}`,
       removalPolicy: cdk.RemovalPolicy.DESTROY,
       autoDeleteObjects: true,
+      cors: [
+        {
+          allowedMethods: [s3.HttpMethods.POST],
+          allowedOrigins: ["*"],
+        },
+      ],
     });
 
     new cloudfront.Distribution(this, "Distribution", {

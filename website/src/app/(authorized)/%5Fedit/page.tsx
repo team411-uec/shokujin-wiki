@@ -2,6 +2,7 @@ import { auth } from "@/auth";
 import { AppHeader } from "@/components/app-header";
 import { ArticleEditor } from "@/components/article-editor";
 import { Button } from "@/components/ui/button";
+import { UploadImageButton } from "@/components/upload-image-button";
 import { Viewer } from "@/components/viewer";
 import { prisma } from "@/prisma";
 import { notFound, redirect } from "next/navigation";
@@ -49,9 +50,12 @@ export default async function EditArticlePage({
   return (
     <>
       <AppHeader />
-      <Viewer>
-        <h1>「{decodeURIComponent(slug)}」の編集</h1>
-      </Viewer>
+      <div className="flex items-start justify-between">
+        <Viewer>
+          <h1>「{decodeURIComponent(slug)}」の編集</h1>
+        </Viewer>
+        <UploadImageButton />
+      </div>
       <form action={updateArticleWithSlug} className="mt-4 space-y-4">
         <ArticleEditor defaultValue={exist.content} />
         <Button type="submit">更新</Button>

@@ -2,6 +2,8 @@ import { auth } from "@/auth";
 import { AppHeader } from "@/components/app-header";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import { UploadImageButton } from "@/components/upload-image-button";
+import { Viewer } from "@/components/viewer";
 import { prisma } from "@/prisma";
 import { notFound, redirect } from "next/navigation";
 
@@ -55,9 +57,12 @@ export default async function CreateArticlePage({
   return (
     <>
       <AppHeader />
-      <h1 className="text-4xl font-bold">
-        「{decodeURIComponent(slug)}」の作成
-      </h1>
+      <div className="flex items-start justify-between">
+        <Viewer>
+          <h1>「{decodeURIComponent(slug)}」の作成</h1>
+        </Viewer>
+        <UploadImageButton />
+      </div>
       <form action={createArticleWithSlug} className="mt-4 space-y-4">
         <Textarea
           placeholder="入力してください"

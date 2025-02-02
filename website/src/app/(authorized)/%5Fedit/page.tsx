@@ -52,7 +52,7 @@ export default async function EditArticlePage({
       <AppHeader />
       <div className="flex items-start justify-between">
         <Viewer>
-          <h1>「{decodeURIComponent(slug)}」の編集</h1>
+          <h1>ページ: {decodeURIComponent(slug)}の編集</h1>
         </Viewer>
         <UploadImageButton />
       </div>

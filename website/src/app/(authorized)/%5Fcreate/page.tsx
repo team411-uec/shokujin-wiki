@@ -48,6 +48,9 @@ export default async function CreateArticlePage({
     where: {
       slug: encodeURIComponent(slug),
     },
+    select: {
+      slug: true,
+    },
   });
 
   if (exist) redirect(`/_edit?slug=${encodeURIComponent(slug)}`);

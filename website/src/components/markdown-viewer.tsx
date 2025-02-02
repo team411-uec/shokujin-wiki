@@ -4,9 +4,11 @@ import Link from "next/link";
 import { PropsWithChildren } from "react";
 import Markdown from "react-markdown";
 import rehypeFormat from "rehype-format";
+import rehypeKatex from "rehype-katex";
 import rehypeRaw from "rehype-raw";
 import rehypeSanitize from "rehype-sanitize";
 import remarkGfm from "remark-gfm";
+import remarkMath from "remark-math";
 import { Viewer } from "./viewer";
 
 interface MarkdownViewerProps {
@@ -21,8 +23,8 @@ export function MarkdownViewer({
   return (
     <Viewer>
       <Markdown
-        remarkPlugins={[remarkGfm]}
-        rehypePlugins={[rehypeRaw, rehypeSanitize, rehypeFormat]}
+        remarkPlugins={[remarkGfm, remarkMath]}
+        rehypePlugins={[rehypeRaw, rehypeSanitize, rehypeKatex, rehypeFormat]}
         remarkRehypeOptions={{
           allowDangerousHtml: true,
         }}

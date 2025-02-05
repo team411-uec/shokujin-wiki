@@ -7,7 +7,9 @@ import { Tweet } from "react-tweet";
 import rehypeFormat from "rehype-format";
 import rehypeKatex from "rehype-katex";
 import rehypeRaw from "rehype-raw";
-import rehypeSanitize from "rehype-sanitize";
+import rehypeSanitize, { defaultSchema } from "rehype-sanitize";
+import rehypeSlug from "rehype-slug";
+import rehypeUnwrapImages from "rehype-unwrap-images";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import { Viewer } from "./viewer";
@@ -89,7 +91,26 @@ export function MarkdownViewer({
     <Viewer>
       <Markdown
         remarkPlugins={[remarkGfm, remarkMath]}
-        rehypePlugins={[rehypeRaw, rehypeSanitize, rehypeKatex, rehypeFormat]}
+        rehypePlugins={[
+          rehypeRaw,
+          [
+            rehypeSanitize,
+            {
+              ...defaultSchema,
+              attributes: {
+                ...defaultSchema.attributes,
+                div: [
+                  ...(defaultSchema.attributes?.div || []),
+                  ["className", "widgets"],
+                ],
+              },
+            },
+          ],
+          rehypeKatex,
+          rehypeUnwrapImages,
+          rehypeSlug,
+          rehypeFormat,
+        ]}
         remarkRehypeOptions={{
           allowDangerousHtml: true,
         }}

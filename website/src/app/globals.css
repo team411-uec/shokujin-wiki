@@ -87,4 +87,11 @@
   html {
     @apply scroll-smooth;
   }
+  .widgets {
+    @apply border p-2 md:float-right md:ml-4 md:max-w-80;
+    img,
+    table {
+      @apply my-0;
+    }
+  }
 }

@@ -59,9 +59,12 @@ export default async function DeleteArticlePage({
   return (
     <>
       <AppHeader />
-      <Alert variant="destructive" className="sticky top-4 w-fit bg-background">
+      <Alert
+        variant="destructive"
+        className="sticky top-4 z-10 w-fit bg-background"
+      >
         <AlertCircle className="h-4 w-4" />
-        <AlertTitle>ページ: {decodeURIComponent(slug)}の削除</AlertTitle>
+        <AlertTitle>ページ削除Ï: {decodeURIComponent(slug)}</AlertTitle>
         <AlertDescription className="flex items-end gap-2">
           <div>
             以下のページを削除します。確定するには削除ボタンをクリックしてください。

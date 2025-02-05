@@ -82,10 +82,10 @@ export default async function CreateArticlePage({
     <>
       <AppHeader />
       <Viewer>
-        <h1>ページ: {decodeURIComponent(slug)}の作成</h1>
+        <h1>ページ作成: {decodeURIComponent(slug)}</h1>
       </Viewer>
       <form action={createArticleWithSlug} className="mt-4 space-y-4">
-        <div className="fixed bottom-4 right-4 space-x-4">
+        <div className="fixed bottom-4 right-4 z-10 space-x-4">
           <UploadImageButton />
           <Button type="submit">投稿</Button>
         </div>

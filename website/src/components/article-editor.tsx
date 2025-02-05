@@ -26,7 +26,7 @@ export function ArticleEditor({
 
   return (
     <>
-      <div className="fixed bottom-4 left-4 md:hidden">
+      <div className="fixed bottom-4 left-4 z-10 md:hidden">
         <Button onClick={() => setPreview(!preview)} type="button">
           {preview ? <Pencil /> : <Eye />}
         </Button>

@@ -73,10 +73,10 @@ export default async function EditArticlePage({
     <>
       <AppHeader />
       <Viewer>
-        <h1>ページ: {decodeURIComponent(slug)}の編集</h1>
+        <h1>ページ編集: {decodeURIComponent(slug)}</h1>
       </Viewer>
       <form action={updateArticleWithSlug} className="mt-4 space-y-4">
-        <div className="fixed right-4 bottom-4 space-x-4">
+        <div className="fixed bottom-4 right-4 z-10 space-x-4">
           <UploadImageButton />
           <Button type="submit">更新</Button>
         </div>

@@ -66,5 +66,6 @@ export default {
       },
     },
   },
+  safelist: ["widgets"],
   plugins: [tailwindcssAnimate, tailwindcssTypography],
 } satisfies Config;

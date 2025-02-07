@@ -101,7 +101,7 @@ export function MarkdownViewer({
                 ...defaultSchema.attributes,
                 div: [
                   ...(defaultSchema.attributes?.div || []),
-                  ["className", "widgets"],
+                  ["className", "widget", "grid-layout"],
                 ],
               },
             },

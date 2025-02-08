@@ -48,6 +48,8 @@ export function MarkdownViewer({
           <ExternalLink className="ml-1 h-4 w-4" />
         </a>
       );
+    } else if (href?.startsWith("#")) {
+      return <a {...props} />;
     } else {
       return (
         <Link
@@ -104,6 +106,7 @@ export function MarkdownViewer({
                   ["className", "widget", "grid-layout"],
                 ],
               },
+              clobberPrefix: "",
             },
           ],
           rehypeKatex,

@@ -77,7 +77,12 @@ export default async function DeleteArticlePage({
         </AlertDescription>
       </Alert>
       <div className="mt-8">
-        <ArticleViewer slug={exist.slug} content={exist.content} />
+        <ArticleViewer
+          slug={exist.slug}
+          content={exist.content}
+          createdAt={exist.createdAt}
+          updatedAt={exist.updatedAt}
+        />
       </div>
     </>
   );

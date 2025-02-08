@@ -1,6 +1,7 @@
 import { AppHeader } from "@/components/app-header";
 import { Viewer } from "@/components/viewer";
 import { prisma } from "@/prisma";
+import { format } from "date-fns";
 import { Metadata } from "next";
 import NextLink from "next/link";
 
@@ -15,10 +16,12 @@ export default async function AllPage() {
   const articles = await prisma.article.findMany({
     select: {
       slug: true,
+      updatedAt: true,
     },
     orderBy: {
-      createdAt: "desc",
+      updatedAt: "desc",
     },
+    take: 100,
   });
 
   return (
@@ -26,15 +29,20 @@ export default async function AllPage() {
       <AppHeader />
       <Viewer>
         <h1>すべてのページ</h1>
-        <ul>
-          {articles.map((article) => (
-            <li key={article.slug}>
-              <NextLink href={`/${article.slug}`}>
-                {decodeURIComponent(article.slug)}
-              </NextLink>
-            </li>
-          ))}
-        </ul>
+        <table className="w-fit">
+          <tbody>
+            {articles.map((article) => (
+              <tr key={article.slug}>
+                <td>
+                  <NextLink href={`/${article.slug}`}>
+                    {decodeURIComponent(article.slug)}
+                  </NextLink>
+                </td>
+                <td>{format(article.updatedAt, "yyyy年M月d日")}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </Viewer>
     </>
   );

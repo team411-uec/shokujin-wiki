@@ -85,10 +85,10 @@
     @apply bg-background text-foreground;
   }
   html {
-    @apply scroll-smooth;
+    @apply scroll-p-8 scroll-smooth;
   }
   .widget {
-    @apply border p-2 md:float-right md:ml-4 md:max-w-80;
+    @apply border bg-background p-2 md:float-right md:ml-4 md:max-w-80;
     img,
     table {
       @apply my-0;

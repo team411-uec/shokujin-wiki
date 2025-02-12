@@ -48,6 +48,9 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     where: {
       slug: slug,
     },
+    include: {
+      Category: true,
+    },
   });
 
   if (!article) notFound();
@@ -59,6 +62,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         <ArticleViewer
           slug={article.slug}
           content={article.content}
+          category={article.Category}
           createdAt={article.createdAt}
           updatedAt={article.updatedAt}
         ></ArticleViewer>

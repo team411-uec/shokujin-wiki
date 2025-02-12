@@ -14,7 +14,7 @@ async function updateArticle(slug: string, formData: FormData) {
   const session = await auth();
   if (!session) throw new Error("Unauthorized");
 
-  const { content } = Object.fromEntries(formData);
+  const { content, categoryId } = Object.fromEntries(formData);
 
   await prisma.article.update({
     where: {
@@ -22,6 +22,7 @@ async function updateArticle(slug: string, formData: FormData) {
     },
     data: {
       content: content as string,
+      categoryId: categoryId ? parseInt(categoryId as string) : undefined,
     },
   });
 
@@ -67,6 +68,22 @@ export default async function EditArticlePage({
 
   const existSlugs = slugs.map((s) => s.slug);
 
+  const categories = await prisma.category.findMany({
+    include: {
+      articles: {
+        select: {
+          id: true,
+        },
+      },
+    },
+  });
+
+  const articleCategories = categories.map((c) => ({
+    value: c.id + "",
+    label: c.name,
+    articleCount: c.articles.length,
+  }));
+
   const updateArticleWithSlug = updateArticle.bind(null, slug);
 
   return (
@@ -80,7 +97,12 @@ export default async function EditArticlePage({
           <UploadImageButton />
           <Button type="submit">更新</Button>
         </div>
-        <ArticleEditor defaultValue={exist.content} existSlugs={existSlugs} />
+        <ArticleEditor
+          defaultValue={exist.content}
+          existSlugs={existSlugs}
+          categories={articleCategories}
+          defaultCategoryId={exist.categoryId || undefined}
+        />
       </form>
     </>
   );

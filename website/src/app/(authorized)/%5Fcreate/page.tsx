@@ -14,7 +14,8 @@ async function createArticle(slug: string, formData: FormData) {
   const session = await auth();
   if (!session) throw new Error("Unauthorized");
 
-  const { content } = Object.fromEntries(formData);
+  const { content, categoryId } = Object.fromEntries(formData);
+
   await prisma.article.create({
     data: {
       slug: encodeURIComponent(slug),
@@ -24,6 +25,13 @@ async function createArticle(slug: string, formData: FormData) {
           id: session.user?.id,
         },
       },
+      Category: categoryId
+        ? {
+            connect: {
+              id: parseInt(categoryId as string),
+            },
+          }
+        : undefined,
     },
   });
 
@@ -76,6 +84,22 @@ export default async function CreateArticlePage({
 
   const existSlugs = slugs.map((s) => s.slug);
 
+  const categories = await prisma.category.findMany({
+    include: {
+      articles: {
+        select: {
+          id: true,
+        },
+      },
+    },
+  });
+
+  const articleCategories = categories.map((c) => ({
+    value: c.id + "",
+    label: c.name,
+    articleCount: c.articles.length,
+  }));
+
   const createArticleWithSlug = createArticle.bind(null, slug);
 
   return (
@@ -89,7 +113,11 @@ export default async function CreateArticlePage({
           <UploadImageButton />
           <Button type="submit">投稿</Button>
         </div>
-        <ArticleEditor defaultValue="" existSlugs={existSlugs} />
+        <ArticleEditor
+          defaultValue=""
+          existSlugs={existSlugs}
+          categories={articleCategories}
+        />
       </form>
     </>
   );

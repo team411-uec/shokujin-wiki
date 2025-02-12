@@ -80,6 +80,7 @@ export default async function DeleteArticlePage({
         <ArticleViewer
           slug={exist.slug}
           content={exist.content}
+          category={null}
           createdAt={exist.createdAt}
           updatedAt={exist.updatedAt}
         />

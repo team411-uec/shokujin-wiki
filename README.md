@@ -1,1 +1,0 @@
-# shokujin-wiki

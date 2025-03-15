@@ -3,6 +3,7 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import { Noto_Sans_JP } from "next/font/google";
 import type { PropsWithChildren } from "react";
 
+import { AppLayout } from "@/components/app-layout";
 import { theme } from "@/theme";
 
 import "./globals.css";
@@ -21,7 +22,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
             <CssBaseline />
-            {children}
+            <AppLayout>{children}</AppLayout>
           </ThemeProvider>
         </AppRouterCacheProvider>
       </body>
